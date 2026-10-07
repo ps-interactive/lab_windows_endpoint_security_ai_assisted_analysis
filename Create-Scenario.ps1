@@ -25,5 +25,5 @@ New-Item -ItemType Directory -Path 'C:\Users\Public\Desktop\LAB_FILES\Alert' -Fo
     AlertUtc = $process.StartTime.ToUniversalTime().ToString('o')
     Signal = 'Hidden Windows PowerShell with EncodedCommand'
     SuggestedSecondsBefore = 5
-    SuggestedSecondsAfter = 15
+    SuggestedSecondsAfter = [int][Math]::Ceiling(($process.ExitTime - $process.StartTime).TotalSeconds) + 15
 } | ConvertTo-Json | Set-Content 'C:\Users\Public\Desktop\LAB_FILES\Alert\WIN-AI-001.json' -Encoding UTF8
